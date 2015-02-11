@@ -1,0 +1,30 @@
+{
+  "name": "twig-list-js",
+  "version": "0.0.1",
+  "description": "List all javascript files included in a twig template within a javascript tag",
+  "main": "index.js",
+  "bin": {
+      {
+          "twiglistjs" : "index.js"
+      }
+  }
+  "scripts": {
+    "test": "node --harmony $(which nodeunit) tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ejosafat/twig-list-js.git"
+  },
+  "keywords": [
+    "twig"
+  ],
+  "author": "Eddy Josafat Hernandez Vega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ejosafat/twig-list-js/issues"
+  },
+  "homepage": "https://github.com/ejosafat/twig-list-js",
+  "devDependencies": {
+    "nodeunit": "^0.9.0"
+  }
+}
