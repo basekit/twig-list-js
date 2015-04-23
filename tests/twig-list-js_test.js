@@ -1,10 +1,12 @@
 'use strict';
 
-const twigListJs = require('../lib/twig-list-js.js'),
-      fs = require('fs');
+const twigListJs = require('../lib/twig-list-js.js');
+const fs = require('fs');
+const assert = require('assert');
 
-exports.testGetList = function (test) {
-    let template = fs.readFileSync(__dirname + '/template.twig'),
+describe('twigListJs', function () {
+    it('parses a twig javascript tag', function () {
+        let template = fs.readFileSync(__dirname + '/template.twig'),
         expected = [
             'libs/jquery-1.10.2.min.js',
             'libs/jquery-ui.custom.min.js',
@@ -20,25 +22,24 @@ exports.testGetList = function (test) {
         ],
         list = twigListJs(template.toString());
 
-    test.deepEqual(list, expected);
-    test.done();
-};
+        assert.deepEqual(list, expected);
+    });
 
-exports.testNoScript = function (test) {
-    let template = fs.readFileSync(__dirname + '/no_scripts_template.twig'),
+    it('return an empty list if there is no javascript tag', function () {
+        let template = fs.readFileSync(__dirname + '/no_scripts_template.twig'),
         expected = [],
         list = twigListJs(template.toString());
 
-    test.deepEqual(list, expected);
-    test.done();
-};
-
-
-exports.testBadScript = function (test) {
-    let template = fs.readFileSync(__dirname + '/bad_scripts_template.twig'),
+        assert.deepEqual(list, expected);
+    });
+    it('return an empty array if the javascript tag is malformed', function () {
+        let template = fs.readFileSync(__dirname + '/bad_scripts_template.twig'),
         expected = [],
         list = twigListJs(template.toString());
 
-    test.deepEqual(list, expected);
-    test.done();
-};
+        assert.deepEqual(list, expected);
+    });
+    it('parses more than one javascript tag');
+    it('parses javascript tags with several files in same line');
+    it('parses javascript tags with several files and filter options');
+});
