@@ -1,13 +1,13 @@
 'use strict';
 
-const twigListJs = require('../lib/twig-list-js.js');
+const twigListJs = require('../index.js');
 const fs = require('fs');
 const assert = require('assert');
 
 describe('twigListJs', function () {
     it('parses a twig javascript tag', function () {
-        let template = fs.readFileSync(__dirname + '/template.twig'),
-        expected = [
+        const template = fs.readFileSync(__dirname + '/template.twig');
+        const expected = [
             'libs/jquery-1.10.2.min.js',
             'libs/jquery-ui.custom.min.js',
             'libs/jquery.cookie.js',
@@ -19,27 +19,74 @@ describe('twigListJs', function () {
             'libs/redactor/fontcolor.js',
             'libs/marionette.js',
             'public/js/mycode.js'
-        ],
-        list = twigListJs(template.toString());
+        ];
+        const list = twigListJs(template.toString());
 
         assert.deepEqual(list, expected);
     });
 
     it('return an empty list if there is no javascript tag', function () {
-        let template = fs.readFileSync(__dirname + '/no_scripts_template.twig'),
-        expected = [],
-        list = twigListJs(template.toString());
+        const template = fs.readFileSync(__dirname + '/no_scripts_template.twig');
+        const expected = [];
+        const list = twigListJs(template.toString());
 
         assert.deepEqual(list, expected);
     });
-    it('return an empty array if the javascript tag is malformed', function () {
-        let template = fs.readFileSync(__dirname + '/bad_scripts_template.twig'),
-        expected = [],
-        list = twigListJs(template.toString());
+
+    it('parses more than one javascript tag', function () {
+        const template = fs.readFileSync(__dirname + '/two_scripts.twig');
+        const expected = [
+            'libs/jquery-1.10.2.min.js',
+            'libs/jquery-ui.custom.min.js',
+            'libs/jquery.cookie.js',
+            'libs/moment.js',
+            'libs/underscore.js',
+            'libs/backbone.js',
+            'libs/twig.js',
+            'libs/redactor/redactor.js',
+            'libs/redactor/fontcolor.js',
+            'libs/marionette.js',
+            'public/js/mycode.js'
+        ];
+        const list = twigListJs(template.toString());
 
         assert.deepEqual(list, expected);
     });
-    it('parses more than one javascript tag');
-    it('parses javascript tags with several files in same line');
-    it('parses javascript tags with several files and filter options');
+
+    it('parses javascript tags with several files in same line', function () {
+        const template = fs.readFileSync(__dirname + '/one_line.twig');
+        const expected = [
+            'libs/jquery-1.10.2.min.js',
+            'libs/lightbox-2.6.js',
+            'libs/underscore.js',
+            'libs/backbone.js',
+            'libs/twig.js',
+            'libs/redactor/redactor.js',
+            'libs/redactor/fontcolor.js',
+            'libs/marionette.js',
+            'public/js/mycode.js'
+        ];
+        const list = twigListJs(template.toString());
+
+        assert.deepEqual(list, expected);
+    });
+
+    it('parses javascript tags with several files and filter options', function () {
+        const template = fs.readFileSync(__dirname + '/one_line.twig');
+        const expected = [
+            'libs/jquery-1.10.2.min.js',
+            'libs/lightbox-2.6.js',
+            'libs/underscore.js',
+            'libs/backbone.js',
+            'libs/twig.js',
+            'libs/redactor/redactor.js',
+            'libs/redactor/fontcolor.js',
+            'libs/marionette.js',
+            'public/js/mycode.js'
+        ];
+        const list = twigListJs(template.toString());
+
+        assert.deepEqual(list, expected);
+
+    });
 });

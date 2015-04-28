@@ -1,17 +1,14 @@
 {
   "name": "twig-list-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "List all javascript files included in a twig template within a javascript tag",
-  "main": "lib/twig-list-js.js",
-  "bin": {
-    "twiglistjs": "index.js"
-  },
+  "main": "index.js",
   "scripts": {
     "test": "mocha --harmony tests/."
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ejosafat/twig-list-js.git"
+    "url": "git@github.com:basekit/twig-list-js.git"
   },
   "keywords": [
     "twig"
@@ -21,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/ejosafat/twig-list-js/issues"
   },
-  "homepage": "https://github.com/ejosafat/twig-list-js",
+  "homepage": "https://github.com/basekit/twig-list-js",
   "devDependencies": {
     "mocha": "^2.2.4"
   }
