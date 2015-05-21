@@ -2,7 +2,7 @@
 
 const startPattern = /\{% javascripts\s/;
 const endPattern = /%\}\s/;
-const jsFilePattern = /'([\w\/\.-]+?)'\s+?/g;
+const jsFilePattern = /'([\w\/\.\*-]+?)'\s+?/g;
 
 function getJavascriptChunks (text) {
     let chunks = [];

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    {% stylesheets
+        'libs//build.css'
+        'libs/imports.less'
+    filter='less' %}
+        <link rel="stylesheet" href="{{ asset_base_url() }}/folder/{{ asset_url }}">
+    {% endstylesheets %}
+</head>
+
+<body>
+    <div class="container">
+    </div>
+
+{% javascripts
+    'libs/twig.js'
+    'libs/redactor/redactor.js'
+    'libs/marionette.js'
+    'responsive/site/widgets/*/*.js'
+    'responsive/editor/widgets/*/*-mobile.js'
+    'public/js/mycode.js'
+%}
+    <script src="{{ asset_base_url() }}/seven/{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>

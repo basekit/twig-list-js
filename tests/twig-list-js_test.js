@@ -87,6 +87,20 @@ describe('twigListJs', function () {
         const list = twigListJs(template.toString());
 
         assert.deepEqual(list, expected);
+    });
 
+    it('parses javascript includes with * characters', function () {
+        const template = fs.readFileSync(__dirname + '/asterisk.twig');
+        const expected = [
+            'libs/twig.js',
+            'libs/redactor/redactor.js',
+            'libs/marionette.js',
+            'responsive/site/widgets/*/*.js',
+            'responsive/editor/widgets/*/*-mobile.js',
+            'public/js/mycode.js'
+        ];
+        const list = twigListJs(template.toString());
+
+        assert.deepEqual(list, expected);
     });
 });

@@ -1,6 +1,6 @@
 {
   "name": "twig-list-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "List all javascript files included in a twig template within a javascript tag",
   "main": "index.js",
   "scripts": {
