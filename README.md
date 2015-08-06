@@ -13,3 +13,5 @@ Usage:
 
     const myArray = twigParser(template);
 ---
+
+You can specify a path to a template instead of passing the content of the file.

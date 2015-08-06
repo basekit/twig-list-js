@@ -5,6 +5,25 @@ const fs = require('fs');
 const assert = require('assert');
 
 describe('twigListJs', function () {
+    it('not only accepts templates but file paths to read them as well', function () {
+        const expected = [
+            'libs/jquery-1.10.2.min.js',
+            'libs/jquery-ui.custom.min.js',
+            'libs/jquery.cookie.js',
+            'libs/moment.js',
+            'libs/underscore.js',
+            'libs/backbone.js',
+            'libs/twig.js',
+            'libs/redactor/redactor.js',
+            'libs/redactor/fontcolor.js',
+            'libs/marionette.js',
+            'public/js/mycode.js'
+        ];
+        const list = twigListJs(__dirname + '/template.twig');
+
+        assert.deepEqual(list, expected);
+    });
+
     it('parses a twig javascript tag', function () {
         const template = fs.readFileSync(__dirname + '/template.twig');
         const expected = [

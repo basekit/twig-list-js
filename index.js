@@ -3,6 +3,7 @@
 const startPattern = /\{% javascripts\s/;
 const endPattern = /%\}\s/;
 const jsFilePattern = /'([\w\/\.\*-]+?)'\s+?/g;
+const fs = require('fs');
 
 function getJavascriptChunks (text) {
     let chunks = [];
@@ -41,6 +42,13 @@ function getList (chunks) {
 }
 
 module.exports = function (template) {
-    return getList(getJavascriptChunks(template));
+    let content = '';
+    // template can be either the twig content or a path to it
+    if (fs.existsSync(template)) {
+        content = fs.readFileSync(template).toString();
+    } else {
+        content = template;
+    }
+    return getList(getJavascriptChunks(content));
 }
 
